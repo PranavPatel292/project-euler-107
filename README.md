@@ -102,6 +102,7 @@ Core never imports from infra. Infra imports types from core. Main imports from 
 ## How To Run
 
 ```bash
+# Node version: v22.22.0
 # Install dependencies
 yarn install
 
