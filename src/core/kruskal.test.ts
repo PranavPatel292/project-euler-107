@@ -49,4 +49,28 @@ describe("kruskal", () => {
     expect(result.mstWeight).toBe(19);
     expect(result.mstEdges).toHaveLength(3); // n-1 edges
   });
+
+  it("solves the HackerRank sample correctly", () => {
+    /* Given */
+    const edges: Edge[] = [
+      { from: 0, to: 1, weight: 16 },
+      { from: 0, to: 2, weight: 12 },
+      { from: 0, to: 3, weight: 21 },
+      { from: 1, to: 3, weight: 17 },
+      { from: 1, to: 4, weight: 20 },
+      { from: 2, to: 3, weight: 28 },
+      { from: 2, to: 5, weight: 31 },
+      { from: 3, to: 4, weight: 18 },
+      { from: 3, to: 5, weight: 19 },
+      { from: 3, to: 6, weight: 23 },
+      { from: 4, to: 6, weight: 11 },
+      { from: 5, to: 6, weight: 27 },
+    ];
+
+    /* When */
+    const result = kruskal(edges, 7);
+
+    /* Then */
+    expect(result.mstWeight).toBe(93);
+  });
 });
