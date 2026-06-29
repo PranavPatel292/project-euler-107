@@ -12,13 +12,13 @@ You can find the original problem description [here](https://projecteuler.net/pr
 
 The initial solution I thought I would use was simple BFS or DFS, as it would traverse all the edges and nodes to find the minimum and then use that to construct the solution.
 
-However, some Google search and AI help later, I found that it could be simplified by an algorithm called `Kruskal`'s algorithm. This is basically a `Minimum Spanning Tree (MST)` problem. Kruskal's algorithm does the following in plain language:
+However, some Google search and AI help later, I found that it could be simplified by an algorithm called `Kruskal`'s algorithm. This is basically a `Minimum Spanning Tree (MST)` problem. Here is what Kruskal's algorithm does the following in plain language:
 
 1. Sort all edges by weight, smallest first
 2. Go through them one by one
 3. For each edge, if connecting it doesn't create a cycle, keep it
-4. If it would create a cycle, skip it
-5. Stop when all nodes are connected
+4. If cycle, skip it
+5. Stop when all nodes are visted/connected
 
 This is exactly what we need. We start with the minimum weight edge and select it. If it doesn't form a cycle we keep it, otherwise we ignore it. We keep doing this for all edges.
 
@@ -28,7 +28,7 @@ This is exactly what we need. We start with the minimum weight edge and select i
 
 ## How Union-Find Works
 
-Kruskal's algorithm needs a way to check if adding an edge would create a cycle. The `Union-Find` solves this by tracking which nodes are already connected. It is simpler than the DFS cycle check logic.
+Kruskal's algorithm needs a way to check if adding an edge would create a cycle. The `Union-Find` solves this by tracking which nodes are already connected. It is simpler than the DFS cycle check logic, at least it is what I thought and Claude confirmed it.
 
 For example:
 
@@ -53,7 +53,7 @@ I choose Claude because I am using it daily (almost) for the coding and I feel l
 
 ## Why The Solution Is Correct
 
-Kruskal's algorithm is a greedy algorithm. At each step it picks the lowest weight edge that doesn't create a cycle. This greedy approach is mathematically proven to produce the Minimum Spanning Tree (MST).
+Essentially the Kruskal's algorithm is a greedy algorithm. At each step we pick the lowest weight edge that doesn't create a cycle. This greedy approach is that produces the Minimum Spanning Tree (MST).
 
 It works because:
 
@@ -71,7 +71,7 @@ Maximum saving: 259679
 
 ### Verification
 
-The solution was also verified against [HackerRank's Project Euler #107](https://www.hackerrank.com/contests/projecteuler/challenges/euler107/problem).
+I have also verified the solution against [HackerRank's Project Euler #107](https://www.hackerrank.com/contests/projecteuler/challenges/euler107/problem).
 
 All test cases passed.
 <img width="1123" height="701" alt="Screenshot 2026-06-29 at 2 59 12 pm" src="https://github.com/user-attachments/assets/a54cb5e7-1d29-4abd-ab81-6e965c22ca49" />
@@ -89,7 +89,7 @@ This is also where validation lives. The parser could validate network size, row
 
 ### Core Layer (`src/core/`)
 
-The core contains the pure business logic with zero external dependencies:
+The core only contains the pure business logic with zero external dependencies:
 
 - **`types.ts`** - Defines the `Edge` and `MSTResult` types that flow through the system
 - **`unionFind.ts`** - Union-Find data structure that tracks which nodes are connected. Three methods: `find` (which group is this node in), `union` (merge two groups), `connected` (are these two nodes already in the same group)
