@@ -83,21 +83,17 @@ The whole concept of the solution was to maintain clean architecture principles 
 
 ### Infrastructure Layer (`src/infra/`)
 
-The first step is to parse the input file, which is in `.txt` format (downloaded from the Project Euler). The `infra` folder handles this because file reading is an external system concern. I thought, we could someday replace the `.txt` input with a PDF, an API call, or any other source. In that case, we'd only need to change or add files here; no domain logic would be touched.
+The first step, I thought, is how to parse the input file, which is in `.txt` format (downloaded from the Project Euler). The `infra` folder handles this because file reading is an external system concern like database. I thought, we could someday replace the `.txt` input with a PDF, an API call, or any other source. In that case, we'd only need to change or add files here; no domain logic would be touched.
 
-This is also where validation lives. The parser could validate network size, row length, and cell values at the boundary, so we can be sure that the core layer will always receive clean, well-typed data.
+Also this is where the validation lives or should live. The parser is validating the network size, row length, and cell values at the boundary, so we can be sure that the core layer will always receive clean, well-typed data.
 
 ### Core Layer (`src/core/`)
 
-The core only contains the pure business logic with zero external dependencies:
-
-- **`types.ts`** - Defines the `Edge` and `MSTResult` types that flow through the system
-- **`unionFind.ts`** - Union-Find data structure that tracks which nodes are connected. Three methods: `find` (which group is this node in), `union` (merge two groups), `connected` (are these two nodes already in the same group)
-- **`kruskal.ts`** - Implements Kruskal's algorithm: sorts edges by weight, iterates through them, uses Union-Find to keep edges that don't create cycles, and returns the MST result with the saving
+The core only contains the pure business logic with zero external dependencies (like parsing or calling database).
 
 ### Dependencies Point Inward
 
-Core never imports from infra. Infra imports types from core. Main imports from both. - The main idea behind clean architecture.
+The core never imports anything from the infra. The infra can import types from core. Main imports from both. - The main idea behind clean architecture.
 
 ## How To Run
 
@@ -116,3 +112,4 @@ yarn start
 ## Future Improvement
 
 - Add structured logging for tracing edge selection decisions during the algorithm.
+- Maybe DDD.
