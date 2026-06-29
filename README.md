@@ -23,8 +23,8 @@ However, some Google search and AI help later, I found that it could be simplifi
 This is exactly what we need. We start with the minimum weight edge and select it. If it doesn't form a cycle we keep it, otherwise we ignore it. We keep doing this for all edges.
 
 ### Simple Example
+<img width="1134" height="2016" alt="WhatsApp Image 2026-06-29 at 15 25 58" src="https://github.com/user-attachments/assets/ec73cab6-b227-407c-b490-6fd76b47bb1a" />
 
-Add Photo here later.
 
 ## How Union-Find Works
 
@@ -74,8 +74,8 @@ Maximum saving: 259679
 The solution was also verified against [HackerRank's Project Euler #107](https://www.hackerrank.com/contests/projecteuler/challenges/euler107/problem).
 
 All test cases passed.
+<img width="1123" height="701" alt="Screenshot 2026-06-29 at 2 59 12 pm" src="https://github.com/user-attachments/assets/a54cb5e7-1d29-4abd-ab81-6e965c22ca49" />
 
-Please attach photo.
 
 ## Project Structure
 
